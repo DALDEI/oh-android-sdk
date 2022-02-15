@@ -20,9 +20,10 @@ WORKDIR /opt
 # install Java
 # install essential tools
 # install Qt
-RUN dpkg --add-architecture i386 && \
+#apt-get install -y --no-install-recommends libncurses5:arm64 libc6:arm64 libstdc++6:arm64 lib32gcc1:arm64 lib32ncurses5:arm64 lib32z1:arm64 zlib1g:arm64 && \
+RUN dpkg --add-architecture arm64 && \
     apt-get update -y && \
-    apt-get install -y --no-install-recommends libncurses5:i386 libc6:i386 libstdc++6:i386 lib32gcc1 lib32ncurses5 lib32z1 zlib1g:i386 && \
+    apt-get install -y --no-install-recommends libncurses5:arm64 libc6:arm64 libstdc++6:arm64 zlib1g:arm64 && \
     apt-get install -y --no-install-recommends git wget unzip 
 RUN mkdir -p /usr/lib/jvm 
 ADD jdk-8u221-linux-x64.tar.gz  /usr/lib/jvm

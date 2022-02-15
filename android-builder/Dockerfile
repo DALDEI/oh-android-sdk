@@ -4,7 +4,8 @@
 
 # Base image
 # ---------------------------------------------------------------------- #
-FROM oh-android-sdk
+#FROM oh-android-sdk
+FROM android-sdk-arm
 ARG USER=android
 ARG USER_ID=1000
 
@@ -28,9 +29,9 @@ USER $USER
 #### Install to sdk standard location 
 RUN cp -a ${ANDROID_HOME} $HOME/sdk
 ENV ANDROID_HOME $HOME/sdk
-
-RUN sdk/tools/bin/sdkmanager --update && \
-    sdk/tools/bin/sdkmanager "build-tools;29.0.2" "platform-tools" "platforms;android-29" "platforms;android-14"
+#RUN sdk/tools/bin/sdkmanager --update
+RUN sdk/cmdline-tools/latest/bin/sdkmanager --update
+RUN sdk/cmdline-tools/latest/bin/sdkmanager "build-tools;29.0.3" "platform-tools" "platforms;android-29" "platforms;android-14"
 
 
 # setup adb server
